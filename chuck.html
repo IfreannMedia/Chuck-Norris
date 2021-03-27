@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuck Norris Joke Machine</title>
+</head>
+
+<body>
+    <header>
+        <h3>Get a Chuck Norris joke!</h3>
+    </header>
+    <nav></nav>
+    <section id="main-content">
+
+        <p>Hit the button or ask using your mic</p>
+        <p>Current joke:</p>
+        <p id="current-joke"></p>
+        <button onclick="norris.getJoke()">Get Joke</button>
+        <button onclick="norris.askForJoke()">Ask for joke</button>
+        <button onclick="norris.hearJokeAgain()">hear joke again</button>
+    </section>
+    <footer></footer>
+    <script type="module" src="norris.js"></script>
+    <script type="module" src="chuckJoke.js"></script>
+</body>
+
+</html>

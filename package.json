@@ -1,0 +1,14 @@
+{
+  "name": "chuck-norris",
+  "version": "1.0.0",
+  "description": "simple webpage that can get you fun chuck norris jokes",
+  "main": "chuckJoke.js",
+  "scripts": {
+    "start": "live-server --entry-file=chuck.html"
+  },
+  "author": "Warren <warrengamedev@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}
