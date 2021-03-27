@@ -1,4 +1,5 @@
 import ChuckJoke from './chuckJoke.js';
+import ChuckCanHearYou from './ChuckCanHearYou.js';
 
 class Norris {
 
@@ -33,6 +34,7 @@ class Norris {
 
     askForJoke() {
         console.log("askForJoke");
+        var chuckCanHearYou = new ChuckCanHearYou();
     }
 
     setHtmlJoke() {
@@ -40,6 +42,7 @@ class Norris {
             this.currentJokeEl.innerHTML = this.currentJoke.value;
         }
     }
+
 }
 
 window.norris = window.norris ? window.norris : new Norris();
