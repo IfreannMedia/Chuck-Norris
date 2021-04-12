@@ -96,8 +96,6 @@ class Norris {
                 textEl.innerText = category;
                 this.currentCategoryEl.appendChild(textEl);
             }
-            // this.currentCategoryEl.appendChild(document.createElement("text")) = this.currentCategoryEl.textContent.concat(" " + category);
-            // this.currentCategoryEl.textContent = this.currentCategoryEl.textContent.concat(" " + category);
         }
     }
 
