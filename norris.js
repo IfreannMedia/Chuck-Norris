@@ -14,10 +14,10 @@ class Norris {
             var categoriesEl = document.getElementById("categories");
             categoriesEl.textContent = categoriesEl.textContent.concat(" ");
             for (let i = 0; i < res.length; i++) {
-                categoriesEl.textContent = categoriesEl.textContent.concat(res[i]);
-                if (res[i] != res[res.length - 1]) {
-                    categoriesEl.textContent = categoriesEl.textContent.concat(" ");
-                }
+                var nextCat = document.createElement("text");
+                 nextCat.innerText = res[i] + " ";
+                 nextCat.classList.add("category")
+                 categoriesEl.appendChild(nextCat);
             }
         }).catch(failed => console.error(new Error(failed)));
     }
@@ -61,7 +61,6 @@ class Norris {
             })
             .then(data => {
                 this.currentJoke = new ChuckJoke(data);
-                console.log(this.currentJoke);
                 this.setHtmlJoke();
                 this.sethtmlCategory(category);
             }).catch(reason => {
@@ -88,8 +87,17 @@ class Norris {
     }
 
     sethtmlCategory(category) {
+        category = " " + category;
         if (this.currentCategoryEl && category) {
-            this.currentCategoryEl.textContent = this.currentCategoryEl.textContent.concat(" " + category);
+            if( this.currentCategoryEl.firstElementChild){
+                this.currentCategoryEl.firstElementChild.innerText = category;
+            } else {
+                var textEl = document.createElement("text");
+                textEl.innerText = category;
+                this.currentCategoryEl.appendChild(textEl);
+            }
+            // this.currentCategoryEl.appendChild(document.createElement("text")) = this.currentCategoryEl.textContent.concat(" " + category);
+            // this.currentCategoryEl.textContent = this.currentCategoryEl.textContent.concat(" " + category);
         }
     }
 

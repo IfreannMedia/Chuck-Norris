@@ -27,14 +27,33 @@ styles
 .second-font {
     font-family: 'Open Sans', auto, sans-serif;
 }
+.category {
+    cursor: pointer;
+}
 
 .em-p1-spacing {
     letter-spacing: .1em;
 }
 
+.header-border {
+    border-bottom: 5px solid var(--colour-d);
+}
+
 
 .bg-main {
     background-color: var(--colour-main);
+}
+
+.bg-a {
+    background-color: var(--colour-a);
+}
+
+.bg-c {
+    background-color: var(--colour-c);
+}
+
+.c-main {
+    color: var(--colour-main);
 }
 
 .c-a {
@@ -53,3 +72,26 @@ styles
     color: var(--colour-d);
 }
 
+#current-joke {
+    font-size: 22px;
+}
+
+.btn:visited {
+    border: 2px solid red;
+}
+
+.btn:active {
+    border: 3px solid var(--colour-b);
+}
+
+.link:focus {
+    outline: none;
+}
+
+.no-outline {
+    outline: none;
+}
+
+p text {
+    color: black;
+}
