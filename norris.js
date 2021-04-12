@@ -8,8 +8,8 @@ class Norris {
     currentCategoryEl = null;
     chuckCanHearYou = new ChuckCanHearYou();
     constructor() {
-        this.currentJokeEl = document.getElementById("current-joke");
-        this.currentCategoryEl = document.getElementById("current-category");
+        this.grabHtmlEls();
+        this.setInitialHtmlEls()
         this.chuckCanHearYou.getCategories().then(res => {
             var categoriesEl = document.getElementById("categories");
             categoriesEl.textContent = categoriesEl.textContent.concat(" ");
@@ -20,6 +20,16 @@ class Norris {
                 }
             }
         }).catch(failed => console.error(new Error(failed)));
+    }
+
+    grabHtmlEls() {
+        this.currentJokeEl = document.getElementById("current-joke");
+        this.currentCategoryEl = document.getElementById("current-category");
+    }
+
+    setInitialHtmlEls() {
+        this.sethtmlCategory('none selected');
+        this.setHtmlJoke('no joke');
     }
 
     getJoke() {

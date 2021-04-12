@@ -5,21 +5,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+    <link href="roundhouse.css" rel="stylesheet">
     <title>Chuck Norris Joke Machine</title>
 </head>
 
 <body>
-    <header>
-        <h3>Get a Chuck Norris joke!</h3>
+    <header class="flex justify-center bg-main">
+        <h3 class="main-font em-p1-spacing c-d">Get a Chuck Norris joke!</h3>
     </header>
     <nav></nav>
-    <section id="main-content">
-
-        <p>Hit the button to get a joke, or get a categorical joke using your mic</p>
-        <p id="categories">Categories:</p>
-        <p id="current-category">Current category:</p>
-        <p>Current joke:</p>
-        <p id="current-joke"></p>
+    <section id="main-content" class="ma3">
+        <p class="second-font">Hit the button to get a joke, or get a categorical joke using your mic</p>
+        <p class="second-font" id="categories">Categories:</p>
+        <p class="second-font" id="current-category">Current category:</p>
+        <p class="second-font">Current joke:</p>
+        <p class="second-font" id="current-joke"></p>
         <button onclick="norris.getJoke()">Get Joke</button>
         <button onclick="norris.askForJoke()">Ask for joke</button>
         <button onclick="norris.hearJokeAgain()">hear joke again</button>

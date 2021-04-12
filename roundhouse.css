@@ -1,0 +1,55 @@
+/*
+colours
+*/
+:root {
+    --colour-main: #BC7B2B;
+    --colour-a: #70440F;
+    --colour-b: #3EBD5A;
+    --colour-c: #5919BD;
+    --colour-d: #381470;
+}
+
+/*
+ spacing
+*/
+:root {
+    --spacing-medium: 1em;
+}
+
+/*
+styles
+*/
+
+.main-font {
+    font-family: 'Dela Gothic One', fantasy, cursive;
+}
+
+.second-font {
+    font-family: 'Open Sans', auto, sans-serif;
+}
+
+.em-p1-spacing {
+    letter-spacing: .1em;
+}
+
+
+.bg-main {
+    background-color: var(--colour-main);
+}
+
+.c-a {
+    color: var(--colour-a);
+}
+
+.c-b {
+    color: var(--colour-b);
+}
+
+.c-c {
+    color: var(--colour-c);
+}
+
+.c-d {
+    color: var(--colour-d);
+}
+
