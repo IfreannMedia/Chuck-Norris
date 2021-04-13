@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Open+Sans:wght@600&display=swap"
+        rel="stylesheet">
     <link href="roundhouse.css" rel="stylesheet">
+    <link href="chucks-toast.css" rel="stylesheet">
     <title>Chuck Norris Joke Machine</title>
 </head>
 
@@ -24,13 +26,27 @@
         <p class="second-font c-b" id="current-category">Current category:</p>
         <p class="second-font c-b f3">Current joke:</p>
         <p class="second-font" id="current-joke"></p>
-        <button class="btn no-outline grow br-pill ph3 pv2 white bg-c second-font" onclick="norris.getJoke()">Get Joke</button>
-        <button class="btn no-outline grow br-pill ph3 pv2 white bg-c second-font" onclick="norris.askForJoke()">Ask for joke</button>
-        <button class="btn no-outline grow br-pill ph3 pv2 white bg-c second-font" onclick="norris.hearJokeAgain()">hear joke</button>
+        <div class="buttons">
+            <button class="btn no-outline grow br-pill ph3 pv2 white bg-c second-font" onclick="norris.getJoke()">Get
+                Joke</button>
+            <button class="btn no-outline grow br-pill ph3 pv2 white bg-c second-font" onclick="norris.askForJoke()">Ask
+                for joke</button>
+            <button class="btn no-outline grow br-pill ph3 pv2 white bg-c second-font"
+                onclick="norris.hearJokeAgain()">hear joke</button>
+        </div>
     </section>
+    <div class="toast-container shadow-2 h3 pa2 bg-light-red" id="master-toast" data-t-index="1">
+        <!-- <div class="toast-loader"></div> -->
+        <div class="toast-loader background"></div>
+        <div class="flex justify-between content">
+            <text class="toast-text second-font c-d">warning: no voice recog available in your browser, try chrome!</text>
+            <p class="toast-close second-font ma0 pointer" onclick="toast.removeToast(1)">x</a>
+        </div>
+    </div>
     <footer></footer>
     <script type="module" src="norris.js"></script>
     <script type="module" src="chuckJoke.js"></script>
+    <script type="module" src="chuck-toast.js"></script>
 </body>
 
 </html>

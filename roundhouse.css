@@ -27,8 +27,16 @@ styles
 .second-font {
     font-family: 'Open Sans', auto, sans-serif;
 }
+
 .category {
     cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+.buttons {
+        display: flex;
+        justify-content: space-around;
+    }
 }
 
 .em-p1-spacing {
