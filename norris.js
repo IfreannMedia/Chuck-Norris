@@ -1,5 +1,6 @@
 import ChuckJoke from './chuckJoke.js';
 import ChuckCanHearYou from './ChuckCanHearYou.js';
+import * as chuckBind from './chuck-bind.js';
 
 class Norris {
 
@@ -15,9 +16,9 @@ class Norris {
             categoriesEl.textContent = categoriesEl.textContent.concat(" ");
             for (let i = 0; i < res.length; i++) {
                 var nextCat = document.createElement("text");
-                 nextCat.innerText = res[i] + " ";
-                 nextCat.classList.add("category")
-                 categoriesEl.appendChild(nextCat);
+                nextCat.innerText = res[i] + " ";
+                nextCat.classList.add("category")
+                categoriesEl.appendChild(nextCat);
             }
         }).catch(failed => console.error(new Error(failed)));
     }
@@ -33,7 +34,6 @@ class Norris {
     }
 
     getJoke() {
-        console.log("getJoke");
         fetch('https://api.chucknorris.io/jokes/random')
             .then(response => {
                 if (response.status == 200)
@@ -69,7 +69,7 @@ class Norris {
 
     }
 
-    hearJokeAgain() {
+    hearJoke() {
         console.log("hearJokeAgain");
     }
 
@@ -89,7 +89,7 @@ class Norris {
     sethtmlCategory(category) {
         category = " " + category;
         if (this.currentCategoryEl && category) {
-            if( this.currentCategoryEl.firstElementChild){
+            if (this.currentCategoryEl.firstElementChild) {
                 this.currentCategoryEl.firstElementChild.innerText = category;
             } else {
                 var textEl = document.createElement("text");
@@ -99,6 +99,15 @@ class Norris {
         }
     }
 
+    bindClickEvents() {
+        chuckBind.bindById("btn-get-joke", () => this.getJoke());
+        chuckBind.bindById("btn-get-joke-category", this.askForJoke());
+        chuckBind.bindById("btn-hear-joke", this.hearJoke());
+    }
+
 }
 
 window.norris = window.norris ? window.norris : new Norris();
+
+window.norris.bindClickEvents();
+
