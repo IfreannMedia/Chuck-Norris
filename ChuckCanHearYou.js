@@ -11,7 +11,6 @@ export default class ChuckCanHearYou {
         this.speechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         this.speechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
         this.speechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
-        //this.fetchCategories();
     }
 
     fetchCategories() {

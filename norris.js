@@ -17,8 +17,9 @@ class Norris {
             for (let i = 0; i < res.length; i++) {
                 var nextCat = document.createElement("text");
                 nextCat.innerText = res[i] + " ";
-                nextCat.classList.add("category")
+                nextCat.classList.add("category");
                 categoriesEl.appendChild(nextCat);
+                chuckBind.bindClickEventHandler(categoriesEl.children[i], () => this.categorySelection(categoriesEl.children[i]));
             }
         }).catch(failed => console.error(new Error(failed)));
     }
@@ -99,10 +100,19 @@ class Norris {
         }
     }
 
+    categorySelection(categoryEl) {
+        this.getCategoricalJoke(categoryEl.textContent);
+        let categories = document.getElementsByClassName("category")
+        for (let i = 0; i < categories.length; i++) {
+            categories[i].classList.remove("chosen");
+        }
+        categoryEl.classList.add("chosen");
+    }
+
     bindClickEvents() {
         chuckBind.bindById("btn-get-joke", () => this.getJoke());
-        chuckBind.bindById("btn-get-joke-category", this.askForJoke());
-        chuckBind.bindById("btn-hear-joke", this.hearJoke());
+        chuckBind.bindById("btn-get-joke-category", () => this.askForJoke());
+        chuckBind.bindById("btn-hear-joke", () => this.hearJoke());
     }
 
 }
