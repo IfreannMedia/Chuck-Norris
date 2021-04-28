@@ -27,22 +27,22 @@
         <p class="second-font c-b f3">Current joke:</p>
         <p class="second-font" id="current-joke"></p>
         <div class="buttons">
-            <button class="btn no-outline grow br-pill ph3 pv2 white bg-c second-font" id="btn-get-joke">Get
+            <button class="btn no-outline ph3 pv2 white bg-c second-font" id="btn-get-joke">Get
                 Joke</button>
-            <button class="btn no-outline grow br-pill ph3 pv2 white bg-c second-font" id="btn-get-joke-category">Ask
+            <button class="btn no-outline ph3 pv2 white bg-c second-font" id="btn-get-joke-category">Ask
                 for joke category</button>
-            <button class="btn no-outline grow br-pill ph3 pv2 white bg-c second-font" id="btn-hear-joke">hear
+            <button class="btn no-outline ph3 pv2 white bg-c second-font" id="btn-hear-joke">hear
                 joke</button>
         </div>
     </section>
     <div class="toast-container shadow-2 h3 pa2 bg-light-red flex flex-column justify-start" id="master-toast"
         data-t-index="1">
         <div class="flex flex-row justify-between">
-            <div class="toast-loader background">
+            <div class="toast-loader-background">
                 <div class="toast-loader"></div>
             </div>
-            <p class="toast-close second-font ma0 pointer self-center" id="btn-close-toast"
-                onclick="toast.removeToast(1)">x</a>
+            <div class="toast-close second-font ma0 pointer self-center" id="btn-close-toast"
+                onclick="toast.removeToast(1)">x</div>
         </div>
         <div class="flex justify-between content">
             <text class="toast-text second-font c-d">warning: no voice recog available in your browser, try

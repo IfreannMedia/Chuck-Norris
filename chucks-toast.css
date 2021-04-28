@@ -1,23 +1,33 @@
 .toast-container {
-    /*visibility: hidden; /* Hidden by default. Visible on click */
-    min-width: 80%; /* Set a default minimum width */
-    margin-left: -125px; /* Divide value of min-width by 2 */
-    border-radius: 8px; /* Rounded borders */
-    position: fixed; /* Sit on top of the screen */
-    left: 20%; /* Center the snackbar */
-    bottom: 30px; /* 30px from the bottom */
-}
-
-
-
-.toast-loader.background {
-    height: 5px;
-    background-color: red;
-    opacity: .5;
-    flex-grow: 1;
+    min-width: 80%;
+    margin-left: -125px;
+    border-radius: 8px;
+    position: fixed;
+    left: 20%;
+    bottom: 30px;
 }
 
 .toast-loader {
     opacity: 1;
     background-color: red;
 }
+
+/* toast loader */
+
+.toast-loader-background {
+    height: 5px;
+    background-color: rgb(116, 41, 41, .5);
+    flex-grow: .99;
+}
+
+.toast-loader {
+    animation: load 8s linear;
+    border-radius: 100px;
+    height: 7px;
+    width: 0%;
+  }
+
+  @keyframes load {
+    0% { width: 100%; }
+    100% { width: 0%; }
+  }
