@@ -27,6 +27,11 @@
     width: 0%;
   }
 
+.dont-animate {
+    animation: none;
+    width: 100%;
+  }
+
   @keyframes load {
     0% { width: 100%; }
     100% { width: 0%; }

@@ -32,6 +32,15 @@ styles
     cursor: pointer;
 }
 
+.buttons {
+    margin-top: var(--spacing-medium);
+}
+
+#current-joke-label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-right: 1rem;
+}
 @media only screen and (max-width: 600px) {
 .buttons {
         display: flex;
@@ -102,4 +111,8 @@ styles
 
 p text {
     color: black;
+}
+
+#categories > :first-child {
+    padding-left: 1rem;
 }

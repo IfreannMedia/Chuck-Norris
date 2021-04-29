@@ -10,17 +10,27 @@ export default class ChuckToast {
         if (master) {
             var newToast = master.cloneNode(true);
             newToast.removeAttribute("id");
-            debugger;
             var index = window.toast.toasts.length + 1;
             newToast.setAttribute("data-t-index", index);
             newToast.lastElementChild.firstElementChild.textContent = text;
             newToast.classList.add("z-9999");
             window.document.getElementById("main-content").appendChild(newToast);
-            newToast.addEventListener('animationend', (event) => {
-                var container = event.srcElement.closest(".toast-container");
-                console.log(container);
-              });
+            this.addEventListeners(newToast);
         }
+    }
+
+    addEventListeners(toast) {
+        toast.addEventListener('animationend', (event) => {
+            var container = event.srcElement.closest(".toast-container");
+            if (container)
+                container.remove();
+        });
+        toast.addEventListener('mouseenter', (event) => {
+            event.srcElement.querySelector(".toast-loader").classList.add("dont-animate");
+        });
+        toast.addEventListener('mouseleave', (event) => {
+            event.srcElement.querySelector(".toast-loader").classList.remove("dont-animate");
+        });
     }
 
     removeToast(index) {

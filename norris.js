@@ -6,26 +6,29 @@ class Norris {
 
     currentJoke = null;
     currentJokeEl = null;
+    categoriesEl = null;
     currentCategoryEl = null;
     chuckCanHearYou = new ChuckCanHearYou();
     constructor() {
         this.grabHtmlEls();
         this.setInitialHtmlEls()
         this.chuckCanHearYou.getCategories().then(res => {
-            var categoriesEl = document.getElementById("categories");
-            categoriesEl.textContent = categoriesEl.textContent.concat(" ");
+            this.removeChildLoader(this.categoriesEl.parentNode);
+            this.categoriesEl.textContent = this.categoriesEl.textContent.concat(" ");
             for (let i = 0; i < res.length; i++) {
                 var nextCat = document.createElement("text");
                 nextCat.innerText = res[i] + " ";
                 nextCat.classList.add("category");
-                categoriesEl.appendChild(nextCat);
-                chuckBind.bindClickEventHandler(categoriesEl.children[i], () => this.categorySelection(categoriesEl.children[i]));
+                nextCat.classList.add("c-b");
+                this.categoriesEl.appendChild(nextCat);
+                chuckBind.bindClickEventHandler(this.categoriesEl.children[i], () => this.categorySelection(this.categoriesEl.children[i]));
             }
         }).catch(failed => console.error(new Error(failed)));
     }
 
     grabHtmlEls() {
         this.currentJokeEl = document.getElementById("current-joke");
+        this.categoriesEl = document.getElementById("categories");
         this.currentCategoryEl = document.getElementById("current-category");
     }
 
@@ -50,6 +53,21 @@ class Norris {
                 console.error(new Error(reason));
             })
 
+    }
+
+    addChildLoader(parentEl) {
+        var loader = document.createElement("div");
+        textEl.classList.add("loader")
+        parentEl.appendChild(loader);
+    }
+
+    removeChildLoader(parentEl) {
+        for (let i = 0; i < parentEl.children.length; i++) {
+            if (parentEl.children[i].classList.contains("loader")) {
+                parentEl.children[i].remove();
+            }
+
+        }
     }
 
     getCategoricalJoke(category) {
@@ -94,6 +112,7 @@ class Norris {
                 this.currentCategoryEl.firstElementChild.innerText = category;
             } else {
                 var textEl = document.createElement("text");
+                textEl.classList.add("c-b")
                 textEl.innerText = category;
                 this.currentCategoryEl.appendChild(textEl);
             }
