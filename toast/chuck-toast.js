@@ -1,8 +1,10 @@
 export default class ChuckToast {
 
+    templateToast = null;
     constructor() {
+        this.templateToast = document.getElementById("master-toast");
+        this.addToast("hello there!");
     }
-
 
     static getSingletonInstance() {
         window.toast = !!window.toast && window.toast instanceof this ? window.toast : new ChuckToast();
@@ -12,46 +14,65 @@ export default class ChuckToast {
     toasts = [];
 
     addToast(text) {
-        var master = window.document.getElementById("master-toast");
-        if (master) {
-            var newToast = master.cloneNode(true);
+        if (this.templateToast) {
+            var newToast = this.templateToast.cloneNode(true);
             newToast.removeAttribute("id");
-            var index = window.toast.toasts.length + 1;
+            var index = this.toasts.length;
             newToast.setAttribute("data-t-index", index);
             newToast.lastElementChild.firstElementChild.textContent = text;
             newToast.classList.add("z-9999");
             window.document.getElementById("main-content").appendChild(newToast);
+            this.toasts.push(newToast);
             this.addEventListeners(newToast);
+        } else {
+            console.error("could not determine a master toast");
         }
     }
 
     addEventListeners(toast) {
-        toast.addEventListener('animationend', (event) => {
-            var container = event.srcElement.closest(".toast-container");
-            if (container)
-                container.remove();
-        });
-        toast.addEventListener('mouseenter', (event) => {
-            event.srcElement.querySelector(".toast-loader").classList.add("dont-animate");
-        });
+        this.addAnimationEndEvent(toast);
+        this.addMouseEnterEvent(toast);
+        this.addMouseLeaveEvent(toast);
+        this.bindCloseEvent(toast);
+    }
+
+    addMouseLeaveEvent(toast) {
         toast.addEventListener('mouseleave', (event) => {
             event.srcElement.querySelector(".toast-loader").classList.remove("dont-animate");
         });
     }
 
-    removeToast(index) {
-        this.addToast("example");
-        console.log("remove: " + index);
+    addMouseEnterEvent(toast) {
+        toast.addEventListener('mouseenter', (event) => {
+            event.srcElement.querySelector(".toast-loader").classList.add("dont-animate");
+        });
     }
 
-    timeoutToast(index) {
-        setTimeout(() => {
-            var allToasts = window.document.getElementsByClassName("toast-container");
-            for (let i = 0; i < allToasts.length; i++) {
-                if (allToasts[i].getAttribute("data-t-index") == index) {
-                    allToasts[i].remove();
+    addAnimationEndEvent(toast) {
+        toast.addEventListener('animationend', (event) => {
+            var container = event.srcElement.closest(".toast-container");
+            if (container)
+                container.remove();
+        });
+    }
+    
+    bindCloseEvent(toast) {
+        for (let i = 0; i < toast.children.length; i++) {
+            if (toast.children[i].classList.contains("toast-loader-container")) {
+                for (let j = 0; j < toast.children[i].children.length; j++) {
+                    const element = toast.children[i].children[j];
+                    if (element.classList.contains("toast-close")) {
+                        element.addEventListener("click", () => this.removeToast(toast.getAttribute("data-t-index")));
+                        break;
+                    }
                 }
+                break;
             }
-        }, 4000)
+        }
+    }
+
+    removeToast(index) {
+        this.toasts[index].remove();
+        this.toasts = this.toasts.splice(index, 1);
     }
 }

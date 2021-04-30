@@ -1,7 +1,7 @@
 import ChuckJoke from './classes/chuckJoke.js';
 import ChuckCanHearYou from './speech/ChuckCanHearYou.js';
 import * as chuckBind from './utils/chuck-bind.js';
-
+import ChuckToast from "../toast/chuck-toast.js";
 class Norris {
 
     currentJoke = null;
@@ -23,7 +23,10 @@ class Norris {
                 this.categoriesEl.appendChild(nextCat);
                 chuckBind.bindClickEventHandler(this.categoriesEl.children[i], () => this.categorySelection(this.categoriesEl.children[i]));
             }
-        }).catch(failed => console.error(new Error(failed)));
+        }).catch(failed => {
+            ChuckToast.getSingletonInstance().addToast("oops! We're having network issues!");
+            console.error(new Error(failed));
+        });
     }
 
     grabHtmlEls() {
@@ -50,6 +53,7 @@ class Norris {
                 console.log(this.currentJoke);
                 this.setHtmlJoke();
             }).catch(reason => {
+                ChuckToast.getSingletonInstance().addToast("oops! We're having network issues!");
                 console.error(new Error(reason));
             })
 
@@ -83,6 +87,7 @@ class Norris {
                 this.setHtmlJoke();
                 this.sethtmlCategory(category);
             }).catch(reason => {
+                ChuckToast.getSingletonInstance().addToast("oops! We're having network issues!");
                 console.error(new Error(reason));
             })
 

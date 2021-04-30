@@ -1,4 +1,4 @@
-import * as ChuckToast from "../toast/chuck-toast.js";
+import ChuckToast from "../toast/chuck-toast.js";
 
 export default class ChuckCanHearYou {
     availableCategories = [];
@@ -13,7 +13,6 @@ export default class ChuckCanHearYou {
         this.speechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         this.speechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
         this.speechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
-        this.toaster = ChuckToast.default.getSingletonInstance();
     }
 
     fetchCategories() {
@@ -25,7 +24,9 @@ export default class ChuckCanHearYou {
             }
         }).then(categories => {
             this.createCateogries(categories);
-        }).catch(err => console.error(new Error(err)));
+        }).catch(err => { 
+            ChuckToast.getSingletonInstance().addToast("error getting categories, try again later!");
+            console.error(new Error(err)); });
     }
 
     createCateogries(categories) {
@@ -48,20 +49,26 @@ export default class ChuckCanHearYou {
             this.successfulSpeechRecogCallback = callback;
             this.recognitionObject.start();
         } catch (error) {
-            
+            ChuckToast.getSingletonInstance().addToast("oops! We're having network issues!");
         }
 
     }
 
     configureSpeechRecognition() {
-        this.recognitionObject = new this.speechRecognition();
-        var speechRecognitionList = new this.speechGrammarList();
-        speechRecognitionList.addFromString(this.grammar, 1);
-        this.recognitionObject.grammars = speechRecognitionList;
-        this.recognitionObject.continuous = false;
-        this.recognitionObject.lang = 'en-US';
-        this.recognitionObject.interimResults = false;
-        this.recognitionObject.maxAlternatives = 1;
+        try {
+            this.recognitionObject = new this.speechRecognition();
+            var speechRecognitionList = new this.speechGrammarList();
+            speechRecognitionList.addFromString(this.grammar, 1);
+            this.recognitionObject.grammars = speechRecognitionList;
+            this.recognitionObject.continuous = false;
+            this.recognitionObject.lang = 'en-US';
+            this.recognitionObject.interimResults = false;
+            this.recognitionObject.maxAlternatives = 1;
+        } catch (error) {
+            console.error(new Error(error));
+            ChuckToast.getSingletonInstance().addToast("unable to configure speech recognition/synthesis, try with another browser!");
+        }
+
     }
 
     getCategories() {
@@ -99,9 +106,9 @@ export default class ChuckCanHearYou {
         }
 
         this.recognitionObject.onresult = function (event) {
-            if(event.results && event.results[0] && event.results[0] && event.results[0][0]){
+            if (event.results && event.results[0] && event.results[0] && event.results[0][0]) {
                 self.selectedCategory = event.results[0][0].transcript;
-                if(self.successfulSpeechRecogCallback){
+                if (self.successfulSpeechRecogCallback) {
                     self.successfulSpeechRecogCallback(self.selectedCategory);
                 }
             } else {
