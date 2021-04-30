@@ -1,6 +1,6 @@
-import ChuckJoke from './chuckJoke.js';
-import ChuckCanHearYou from './ChuckCanHearYou.js';
-import * as chuckBind from './chuck-bind.js';
+import ChuckJoke from './classes/chuckJoke.js';
+import ChuckCanHearYou from './speech/ChuckCanHearYou.js';
+import * as chuckBind from './utils/chuck-bind.js';
 
 class Norris {
 

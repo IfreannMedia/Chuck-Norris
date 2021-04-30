@@ -1,5 +1,3 @@
-
-
 function bindClickEventHandler(el, functionToBind) {
     if (el) {
         el.onclick = functionToBind;
