@@ -3,6 +3,12 @@ export default class ChuckToast {
     constructor() {
     }
 
+
+    static getSingletonInstance() {
+        window.toast = !!window.toast && window.toast instanceof this ? window.toast : new ChuckToast();
+        return window.toast;
+    }
+
     toasts = [];
 
     addToast(text) {
@@ -49,5 +55,3 @@ export default class ChuckToast {
         }, 4000)
     }
 }
-
-window.toast = window.toast ? window.toast : new ChuckToast();

@@ -1,3 +1,5 @@
+import * as ChuckToast from "../toast/chuck-toast.js";
+
 export default class ChuckCanHearYou {
     availableCategories = [];
     speechRecognition = null;
@@ -11,6 +13,7 @@ export default class ChuckCanHearYou {
         this.speechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         this.speechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
         this.speechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
+        this.toaster = ChuckToast.default.getSingletonInstance();
     }
 
     fetchCategories() {
@@ -41,8 +44,13 @@ export default class ChuckCanHearYou {
     }
 
     startSpeechRecognition(callback) {
-        this.successfulSpeechRecogCallback = callback;
-        this.recognitionObject.start();
+        try {
+            this.successfulSpeechRecogCallback = callback;
+            this.recognitionObject.start();
+        } catch (error) {
+            
+        }
+
     }
 
     configureSpeechRecognition() {
