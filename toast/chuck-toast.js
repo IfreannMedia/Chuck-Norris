@@ -3,7 +3,6 @@ export default class ChuckToast {
     templateToast = null;
     constructor() {
         this.templateToast = document.getElementById("master-toast");
-        this.addToast("hello there!");
     }
 
     static getSingletonInstance() {
@@ -50,19 +49,17 @@ export default class ChuckToast {
 
     addAnimationEndEvent(toast) {
         toast.addEventListener('animationend', (event) => {
-            var container = event.srcElement.closest(".toast-container");
-            if (container)
-                container.remove();
+            this.removeToast(toast)
         });
     }
-    
+
     bindCloseEvent(toast) {
         for (let i = 0; i < toast.children.length; i++) {
             if (toast.children[i].classList.contains("toast-loader-container")) {
                 for (let j = 0; j < toast.children[i].children.length; j++) {
                     const element = toast.children[i].children[j];
                     if (element.classList.contains("toast-close")) {
-                        element.addEventListener("click", () => this.removeToast(toast.getAttribute("data-t-index")));
+                        element.addEventListener("click", () => this.removeToast(toast));
                         break;
                     }
                 }
@@ -71,8 +68,11 @@ export default class ChuckToast {
         }
     }
 
-    removeToast(index) {
-        this.toasts[index].remove();
-        this.toasts = this.toasts.splice(index, 1);
+    removeToast(toast) {
+        const index =  toast.getAttribute("data-t-index");
+        toast.remove();
+        if (this.toasts[index]) {
+            this.toasts.splice(index, 1);
+        }
     }
 }

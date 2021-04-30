@@ -25,7 +25,7 @@ class Norris {
             }
         }).catch(failed => {
             ChuckToast.getSingletonInstance().addToast("oops! We're having network issues!");
-            console.error(new Error(failed));
+            console.error(failed);
         });
     }
 
@@ -88,7 +88,7 @@ class Norris {
                 this.sethtmlCategory(category);
             }).catch(reason => {
                 ChuckToast.getSingletonInstance().addToast("oops! We're having network issues!");
-                console.error(new Error(reason));
+                console.error(reason);
             })
 
     }

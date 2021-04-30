@@ -10,9 +10,14 @@ export default class ChuckCanHearYou {
     selectedCategory = "";
     successfulSpeechRecogCallback = null;
     constructor() {
-        this.speechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        this.speechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
-        this.speechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
+        this.initSpeechRecogApi()
+    }
+
+
+    initSpeechRecogApi() {
+        this.speechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || window.msSpeechRecognition;
+        this.speechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList  || window.msSpeechGrammarList;
+        this.speechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent || window.msSpeechRecognitionEvent;
     }
 
     fetchCategories() {
@@ -24,9 +29,10 @@ export default class ChuckCanHearYou {
             }
         }).then(categories => {
             this.createCateogries(categories);
-        }).catch(err => { 
+        }).catch(err => {
             ChuckToast.getSingletonInstance().addToast("error getting categories, try again later!");
-            console.error(new Error(err)); });
+            console.error(new Error(err));
+        });
     }
 
     createCateogries(categories) {
@@ -65,7 +71,7 @@ export default class ChuckCanHearYou {
             this.recognitionObject.interimResults = false;
             this.recognitionObject.maxAlternatives = 1;
         } catch (error) {
-            console.error(new Error(error));
+            console.error(error);
             ChuckToast.getSingletonInstance().addToast("unable to configure speech recognition/synthesis, try with another browser!");
         }
 
@@ -98,7 +104,24 @@ export default class ChuckCanHearYou {
         }
 
         this.recognitionObject.onerror = function (event) {
-            console.error(new Error(event))
+            if (event.error == "not-allowed") {
+               
+            } else {
+                debugger;
+            }
+            var displayErrorText = "speech recognition is experimental tech, it will only work in certain browsers like Chrome ";
+            console.error(event)
+            switch (event.error) {
+                case "not-allowed":
+                    displayErrorText = "speech recognition is not allowed, enable microphone access to use it";
+                    break;
+                case "network":
+                    displayErrorText = "network error encountered, perhaps your are using a privacy focused browser";
+                    break;
+                default:
+                    break;
+            }
+            ChuckToast.getSingletonInstance().addToast(displayErrorText);
         }
 
         this.recognitionObject.onnomatch = function (event) {
