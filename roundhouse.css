@@ -93,6 +93,10 @@ styles
     font-size: 22px;
 }
 
+#categories-label {
+    margin-top: 8px;
+}
+
 .btn:visited {
     border: 2px solid red;
 }
@@ -113,6 +117,9 @@ p text {
     color: black;
 }
 
-#categories > :first-child {
-    padding-left: 1rem;
+.category-btn {
+    max-width: 100px;
+    min-width: 60px;
+    text-align: center;
+    display: block;
 }

@@ -20,8 +20,8 @@ class Norris {
             for (let i = 0; i < res.length; i++) {
                 var nextCat = document.createElement("text");
                 nextCat.innerText = res[i] + " ";
-                nextCat.classList.add("category");
-                nextCat.classList.add("c-b");
+                nextCat.style.flexBasis = res.length + "%";
+                this.addClassesToCategory(nextCat);
                 this.categoriesEl.appendChild(nextCat);
                 chuckBind.bindClickEventHandler(this.categoriesEl.children[i], () => this.categorySelection(this.categoriesEl.children[i]));
             }
@@ -29,6 +29,24 @@ class Norris {
             ChuckToast.getSingletonInstance().addToast("oops! We're having network issues!");
             console.error(failed);
         });
+    }
+
+    addClassesToCategory(categoryElement) {
+        // adds tachyon classlist to the category buttons
+        categoryElement.classList.add("category");
+        categoryElement.classList.add("c-b");
+        categoryElement.classList.add("ph1");
+        categoryElement.classList.add("pv2");
+        categoryElement.classList.add("dib");
+        categoryElement.classList.add("near-black");
+        categoryElement.classList.add("ba");
+        categoryElement.classList.add("mh1");
+        categoryElement.classList.add("mv1");
+        categoryElement.classList.add("link");
+        categoryElement.classList.add("dim");
+        categoryElement.classList.add("grow");
+        categoryElement.classList.add("flex");
+        categoryElement.classList.add("category-btn");
     }
 
     grabHtmlEls() {
