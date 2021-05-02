@@ -3,7 +3,6 @@ import ChuckToast from '../toast/chuck-toast.js'
 export default class ChuckCanSpeak {
 
     constructor() {
-        window.speechSynthesis.onvoiceschanged = () => { console.warn('voices are ready', window.speechSynthesis.getVoices()); };
     }
 
     getJokeText() {

@@ -41,12 +41,6 @@ styles
     margin-bottom: 10px;
     padding-right: 1rem;
 }
-@media only screen and (max-width: 600px) {
-.buttons {
-        display: flex;
-        justify-content: space-around;
-    }
-}
 
 .em-p1-spacing {
     letter-spacing: .1em;
