@@ -1,5 +1,6 @@
 import ChuckJoke from './classes/chuckJoke.js';
-import ChuckCanHearYou from './speech/ChuckCanHearYou.js';
+import ChuckCanHearYou from './speech/chuck-can-hear-you.js';
+import ChuckCanSpeak from './speech/chuch-can-speak.js';
 import * as chuckBind from './utils/chuck-bind.js';
 import ChuckToast from "../toast/chuck-toast.js";
 class Norris {
@@ -9,6 +10,7 @@ class Norris {
     categoriesEl = null;
     currentCategoryEl = null;
     chuckCanHearYou = new ChuckCanHearYou();
+    chuckCanSpeak = new ChuckCanSpeak();
     constructor() {
         this.grabHtmlEls();
         this.setInitialHtmlEls()
@@ -41,7 +43,7 @@ class Norris {
     }
 
     getJoke() {
-        fetch('https://api.chucknorris.io/jokes/random')
+        return fetch('https://api.chucknorris.io/jokes/random')
             .then(response => {
                 if (response.status == 200)
                     return response.json()
@@ -93,7 +95,11 @@ class Norris {
     }
 
     hearJoke() {
-        console.log("hearJokeAgain");
+        if (!this.currentJoke) {
+            this.getJoke().then(() => this.chuckCanSpeak.synthesizeTextToVoice(this.currentJoke.value))
+        } else {
+            this.chuckCanSpeak.synthesizeTextToVoice(this.currentJoke.value);
+        }
     }
 
     askForJoke() {

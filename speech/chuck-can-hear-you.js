@@ -104,12 +104,6 @@ export default class ChuckCanHearYou {
         }
 
         this.recognitionObject.onerror = function (event) {
-            debugger;
-            if (event.error == "not-allowed") {
-
-            } else {
-                debugger;
-            }
             var displayErrorText = "speech recognition is experimental tech, it will only work in certain browsers like Chrome ";
             console.error(event)
             switch (event.error) {
@@ -117,10 +111,10 @@ export default class ChuckCanHearYou {
                     displayErrorText = "speech recognition is not allowed, enable microphone access to use it";
                     break;
                 case "network":
-                    displayErrorText = "network error encountered, perhaps your are using a privacy focused browser";
+                    displayErrorText = "network error encountered, cannot recognize speech";
                     break;
                 case "no-speech":
-                    displayErrorText = "your micropohne did not pick up any speech, please try again";
+                    displayErrorText = "your microphone did not pick up any speech, please try again";
                     break;
                 default:
                     break;

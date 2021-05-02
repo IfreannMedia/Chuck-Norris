@@ -1,0 +1,29 @@
+.tooltip {
+    position: relative;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 500px;
+    background-color: #390c7d;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 7px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    margin-left: -215px;
+    top: 110%;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  .hear-tooltip {
+    width: 540px !important;
+    margin-left: -270px !important;
+  }
