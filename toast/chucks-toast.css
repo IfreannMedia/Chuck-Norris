@@ -1,9 +1,8 @@
 .toast-container {
-    min-width: 80%;
-    margin-left: -125px;
     border-radius: 8px;
-    position: fixed;
-    left: 20%;
+    position: absolute;
+    width: 80vw;
+    left: 10%;
     bottom: 30px;
 }
 
@@ -38,5 +37,5 @@
   }
 
   #master-toast {
-    display: none;
+    /* display: none; */
   }
