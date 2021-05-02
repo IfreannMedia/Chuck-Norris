@@ -16,7 +16,7 @@ export default class ChuckCanHearYou {
 
     initSpeechRecogApi() {
         this.speechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || window.msSpeechRecognition;
-        this.speechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList  || window.msSpeechGrammarList;
+        this.speechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList || window.msSpeechGrammarList;
         this.speechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent || window.msSpeechRecognitionEvent;
     }
 
@@ -104,8 +104,9 @@ export default class ChuckCanHearYou {
         }
 
         this.recognitionObject.onerror = function (event) {
+            debugger;
             if (event.error == "not-allowed") {
-               
+
             } else {
                 debugger;
             }
@@ -118,6 +119,9 @@ export default class ChuckCanHearYou {
                 case "network":
                     displayErrorText = "network error encountered, perhaps your are using a privacy focused browser";
                     break;
+                case "no-speech":
+                    displayErrorText = "your micropohne did not pick up any speech, please try again";
+                    break;
                 default:
                     break;
             }
@@ -129,13 +133,19 @@ export default class ChuckCanHearYou {
         }
 
         this.recognitionObject.onresult = function (event) {
-            if (event.results && event.results[0] && event.results[0] && event.results[0][0]) {
-                self.selectedCategory = event.results[0][0].transcript;
+            self.selectedCategory = self.getTranscriptOfSpeech(event)
+            const validCateogry = self.gotValidCateogry(self.selectedCategory)
+            if (self.selectedCategory && validCateogry) {
                 if (self.successfulSpeechRecogCallback) {
                     self.successfulSpeechRecogCallback(self.selectedCategory);
                 }
             } else {
                 console.log("speech detection failed with result: ", event);
+                if (self.selectedCategory && !validCateogry) {
+                    ChuckToast.getSingletonInstance().addToast("not a valid cateogry, you said: " + self.selectedCategory);
+                } else {
+                    ChuckToast.getSingletonInstance().addToast("Speech recognition failed, try again");
+                }
             }
         }
 
@@ -161,4 +171,19 @@ export default class ChuckCanHearYou {
 
     }
 
+    gotValidCateogry(speechTranscript) {
+        for (let i = 0; i < this.availableCategories.length; i++) {
+            if (this.availableCategories[i].toLowerCase() == speechTranscript.toLowerCase()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    getTranscriptOfSpeech(speechRecognitionEvent) {
+        if (speechRecognitionEvent.results && speechRecognitionEvent.results[0] && speechRecognitionEvent.results[0] && speechRecognitionEvent.results[0][0]) {
+            return speechRecognitionEvent.results[0][0].transcript;
+        }
+        return null;
+    }
 }

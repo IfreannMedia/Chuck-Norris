@@ -50,7 +50,6 @@ class Norris {
             })
             .then(data => {
                 this.currentJoke = new ChuckJoke(data);
-                console.log(this.currentJoke);
                 this.setHtmlJoke();
             }).catch(reason => {
                 ChuckToast.getSingletonInstance().addToast("oops! We're having network issues!");
