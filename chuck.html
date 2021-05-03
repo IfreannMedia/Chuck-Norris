@@ -19,24 +19,24 @@
 
 <body class="bg-main">
     <header class="flex justify-center bg-main header-border">
-        <h3 class="main-font em-p1-spacing c-c">Get a Chuck Norris joke!</h3>
+        <h3 class="main-font em-p1-spacing c-c tc">Get a Chuck Norris joke!</h3>
     </header>
     <nav></nav>
     <section id="main-content" class="ma3">
         <p class="second-font c-b">Hit the button to get a joke, or get a categorical joke using your mic</p>
-        <div class="flex">
+        <div class="flex flex-column">
             <p class="second-font" id="categories-label" >Categories:
             </p>
             <div id="categories" class="flex flex-wrap"></div>
             <div class="loader"></div>
         </div>
         <p class="second-font" id="current-category">Current category:</p>
-        <div class="flex justify-start items-center">
+        <div class="flex flex-wrap justify-start items-center">
             <p class="second-font f3" id="current-joke-label">Current joke:</p>
             <p class="second-font c-b" id="current-joke"></p>
         </div>
 
-        <div class="buttons">
+        <div class="buttons flex flex-column flex-row-l flex-row-ns items-center">
             <button class="btn no-outline ph3 pv2 white bg-c second-font" id="btn-get-joke">Get
                 Joke</button>
             <button class="btn no-outline ph3 pv2 white bg-c second-font tooltip" id="btn-get-joke-category">Ask

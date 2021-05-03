@@ -31,7 +31,7 @@ export default class ChuckCanHearYou {
             this.createCateogries(categories);
         }).catch(err => {
             ChuckToast.getSingletonInstance().addToast("error getting categories, try again later!");
-            console.error(new Error(err));
+            console.error(err);
         });
     }
 
@@ -46,8 +46,8 @@ export default class ChuckCanHearYou {
             }
 
         }
-        this.configureSpeechRecognition();
-        this.bindSpeechRecognitionEvents();
+        // this.configureSpeechRecognition();
+        // this.bindSpeechRecognitionEvents();
     }
 
     startSpeechRecognition(callback) {
@@ -72,7 +72,7 @@ export default class ChuckCanHearYou {
             this.recognitionObject.maxAlternatives = 1;
         } catch (error) {
             console.error(error);
-            ChuckToast.getSingletonInstance().addToast("unable to configure speech recognition/synthesis, try with another browser!");
+            ChuckToast.getSingletonInstance().addToast("unable to configure speech recognition, try with another browser!");
         }
 
     }
@@ -91,6 +91,10 @@ export default class ChuckCanHearYou {
 
     bindSpeechRecognitionEvents() {
         const self = this;
+        if (!self.recognitionObject) {
+            console.log("no recognition object available in browser, will not bind events");
+            return;
+        }
         this.recognitionObject.onaudiostart = function (event) {
             console.log("audio started");
         }

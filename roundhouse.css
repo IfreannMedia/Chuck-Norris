@@ -36,6 +36,24 @@ styles
     margin-top: var(--spacing-medium);
 }
 
+@media only screen and (max-width: 479px) {
+    /* .toast-container {
+      position: sticky;
+    } */
+  
+    .btn {
+        flex-grow: 1;
+        min-width: 90vw;
+        margin-bottom: .75rem;
+        /* max-width: 90vw;
+        min-width: 80vw; */
+    }
+  }
+
+  .btn {
+      flex-grow: 0;
+  }
+
 #current-joke-label {
     margin-top: 10px;
     margin-bottom: 10px;

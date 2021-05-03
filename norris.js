@@ -13,8 +13,17 @@ class Norris {
     chuckCanSpeak = new ChuckCanSpeak();
     constructor() {
         this.grabHtmlEls();
-        this.setInitialHtmlEls()
-        this.chuckCanHearYou.getCategories().then(res => {
+        this.setInitialHtmlEls();
+        this.initializeJokeCategories().then(() => {
+            this.initializeSpeechRecognition();
+        }).catch((error) => {
+            console.error(error);
+        });
+        this.bindClickEvents();
+    }
+
+    initializeJokeCategories() {
+        return this.chuckCanHearYou.getCategories().then(res => {
             this.removeChildLoader(this.categoriesEl.parentNode);
             this.categoriesEl.textContent = this.categoriesEl.textContent.concat(" ");
             for (let i = 0; i < res.length; i++) {
@@ -29,6 +38,11 @@ class Norris {
             ChuckToast.getSingletonInstance().addToast("oops! We're having network issues!");
             console.error(failed);
         });
+    }
+
+    initializeSpeechRecognition() {
+        this.chuckCanHearYou.configureSpeechRecognition();
+        this.chuckCanHearYou.bindSpeechRecognitionEvents();
     }
 
     addClassesToCategory(categoryElement) {
@@ -165,6 +179,4 @@ class Norris {
 }
 
 window.norris = window.norris ? window.norris : new Norris();
-
-window.norris.bindClickEvents();
 
