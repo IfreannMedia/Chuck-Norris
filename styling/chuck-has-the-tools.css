@@ -27,3 +27,10 @@
     width: 540px !important;
     margin-left: -270px !important;
   }
+
+  @media only screen and (max-width: 479px) {
+    .tooltip:hover .tooltiptext {
+      visibility: hidden;
+    }
+
+  }

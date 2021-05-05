@@ -25,7 +25,7 @@
     <section id="main-content" class="ma3">
         <p class="second-font c-b">Hit the button to get a joke, or get a categorical joke using your mic</p>
         <div class="flex flex-column">
-            <p class="second-font" id="categories-label" >Categories:
+            <p class="second-font" id="categories-label">Categories:
             </p>
             <div id="categories" class="flex flex-wrap"></div>
             <div class="loader"></div>
@@ -39,14 +39,24 @@
         <div class="buttons flex flex-column flex-row-l flex-row-ns items-center">
             <button class="btn no-outline ph3 pv2 white bg-c second-font" id="btn-get-joke">Get
                 Joke</button>
+            <div class="mob-vis btn-prompt">
+                <p class="ma0 second-font white f6">use your microphone to ask for a joke category.
+                    Experimental, only available in some browsers</p>
+            </div>
             <button class="btn no-outline ph3 pv2 white bg-c second-font tooltip" id="btn-get-joke-category">Ask
                 for joke category
-                <span class="tooltiptext ph3 pv2 white bg-c second-font">use your microphone to ask for a joke category. Experimental, only available in some browsers</span></button>
+                <span class="tooltiptext ph3 pv2 white bg-c second-font">use your microphone to ask for a joke category.
+                    Experimental, only available in some browsers</span></button>
+            <div class="mob-vis btn-prompt">
+                <p class="ma0 second-font white f6">Use speech synthesis to hear a
+                    joke. Experimental, only available in some browsers</p>
+            </div>
             <button class="btn no-outline ph3 pv2 white bg-c second-font tooltip" id="btn-hear-joke">hear
-                joke<span class="tooltiptext hear-tooltip ph3 pv2 white bg-c second-font">Use speech synthesis to hear a joke. Experimental, only available in some browsers</span></button>
+                joke<span class="tooltiptext hear-tooltip ph3 pv2 white bg-c second-font">Use speech synthesis to hear a
+                    joke. Experimental, only available in some browsers</span></button>
         </div>
     </section>
-<!-- master toast template -->
+    <!-- master toast template -->
     <div class="toast-container shadow-2 h3 pa2 bg-light-red flex flex-column justify-start" id="master-toast"
         data-t-index="1">
         <div class="toast-loader-container flex flex-row justify-between">

@@ -38,20 +38,17 @@ export default class ChuckCanSpeak {
 
     bindEventHandlers(utterance) {
         utterance.onend = function (event) {
-            debugger;
             document.getElementById("btn-hear-joke").removeAttribute("disabled");
             console.log(document.getElementById("btn-hear-joke"));
             console.log("onend: ", event);
         }
 
         utterance.onerror = function (event) {
-            debugger;
             document.getElementById("btn-hear-joke").removeAttribute("disabled");
             console.log("onerror: ", event);
         }
 
         utterance.onstart = function (event) {
-            debugger;
             console.log("onstart: ", event);
             document.getElementById("btn-hear-joke").setAttribute("disabled", true);
         }
