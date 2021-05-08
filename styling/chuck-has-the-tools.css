@@ -4,28 +4,24 @@
   
   .tooltip .tooltiptext {
     visibility: hidden;
-    width: 500px;
+    max-width: 90vw;
+    min-width: auto;
     background-color: #390c7d;
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 7px 0;
+    padding: 7px;
     
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
-    left: 50%;
-    margin-left: -215px;
-    top: 110%;
+    top: 50px;
+    left: -10%;
+    width: 110%;
   }
   
   .tooltip:hover .tooltiptext {
     visibility: visible;
-  }
-
-  .hear-tooltip {
-    width: 540px !important;
-    margin-left: -270px !important;
   }
 
   @media only screen and (max-width: 479px) {

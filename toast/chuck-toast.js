@@ -69,7 +69,7 @@ export default class ChuckToast {
     }
 
     removeToast(toast) {
-        const index =  toast.getAttribute("data-t-index");
+        const index = toast.getAttribute("data-t-index");
         toast.remove();
         if (this.toasts[index]) {
             this.toasts.splice(index, 1);

@@ -6,13 +6,6 @@
     bottom: 30px;
 }
 
-@media only screen and (max-width: 291px) {
-  .toast-container {
-    position: sticky;
-  }
-
-}
-
 .toast-loader-container {
     height: 5px;
     margin-bottom: 10px;
