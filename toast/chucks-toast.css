@@ -17,6 +17,9 @@
     background-color: red;
 }
 
+.toast-close {
+  font-size: large;
+}
 /* toast loader */
 
 .toast-loader-background {
