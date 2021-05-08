@@ -19,6 +19,7 @@ export default class ChuckCanSpeak {
 
     synthesizeTextToVoice(text) {
         if (this.synthesizorIsBusy()) {
+            ChuckToast.getSingletonInstance().addToast('speech synthesis preparing, try again in a moment');
             return;
         }
         var synth = this.getSynth();
