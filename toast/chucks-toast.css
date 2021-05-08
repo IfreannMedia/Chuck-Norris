@@ -4,6 +4,7 @@
     width: 80vw;
     left: 10%;
     bottom: 30px;
+    min-height: 4rem;
 }
 
 .toast-loader-container {
